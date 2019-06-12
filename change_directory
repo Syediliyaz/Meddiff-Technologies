@@ -1,0 +1,31 @@
+class Change_Directory():
+    """A class that provides change directory (cd) function for an file system """
+
+    def __init__(self, path):
+        self.root = '/'
+        self.current_Path = path
+
+    def cd(self, input_Path):
+        try:
+            input_Path = input_Path.strip("/").split('/')
+            for path_to_change in input_Path:
+                self.modify_Path(path_to_change)
+            self.current_Path = self.current_Path + "/"
+        except Exception as e:
+            raise Exception(e)
+
+    def modify_Path(self, path_to_change):
+        if self.current_Path == self.root and path_to_change == "..":
+            self.current_Path = self.root
+        if path_to_change != "..":
+            self.current_Path = self.current_Path.rstrip('/') + "/" + path_to_change
+        if path_to_change == "..":
+            self.current_Path = self.current_Path.rstrip('/').rsplit("/",1)[0]
+
+
+
+path = Change_Directory("a/b/c")
+print path.current_Path
+
+path.cd("../../")
+print path.current_Path

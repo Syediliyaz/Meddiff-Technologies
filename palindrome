@@ -1,0 +1,22 @@
+class Palindrome():
+    """ This class will check whether give word is palindrome or not"""
+
+    def __init__(self, input):
+        self.given_Word = input
+
+    def is_Palindrome(self):
+        try:
+            reverse_Word = str(self.given_Word)[::-1]
+            if str(reverse_Word).lower() == str(self.given_Word).lower():
+                return "Yes, it is Palindrome"
+            return "No, it is not Palindrome"
+        except Exception as e:
+            raise Exception(e)
+
+def main(word_to_check):
+    palindrome = Palindrome(word_to_check)
+    result = palindrome.is_Palindrome()
+    print result
+
+
+main("MOM")

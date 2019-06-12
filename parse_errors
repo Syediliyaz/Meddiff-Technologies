@@ -1,0 +1,23 @@
+class Parse_Errors():
+
+    def __init__(self):
+        pass
+
+    def parse_File(self, fileName, file_To_Report):
+        try:
+            report_File_Pointer = open(file_To_Report, 'w')
+            with open(fileName, 'r') as file_Pointer:
+               lines = file_Pointer.readlines()
+            for line in lines:
+               if "Error" in line or "Warning" in line or "ERR" in line or "WN" in line:
+                   report_File_Pointer.write(line)
+            report_File_Pointer.close()
+        except Exception as e:
+            raise Exception(e)
+        finally:
+            report_File_Pointer.close()
+
+
+parse = Parse_Errors()
+#pass file name with logs and file name to report logs with full path
+parse.parse_File("filewithlogs.text","Reportfile.text")

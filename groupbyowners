@@ -1,0 +1,33 @@
+class GroupByOwners():
+    """This class will form dict with  Group by owner of the given dict
+
+       Accepts a dictionary containing the file owner name for each file name.
+
+       Returns a dictionary containing a list of file names for each owner name, in any order
+
+    """
+    def __init__(self):
+        self.output_Dict = dict()
+        pass
+
+    def group_By_Owners(self, input_Dict):
+        try:
+            for file_name in input_Dict.keys():
+                owner_Of_File = input_Dict[file_name]
+                if not self.output_Dict.has_key(owner_Of_File):
+                    self.output_Dict[owner_Of_File] = [file_name]
+                else:
+                    self.output_Dict[owner_Of_File].append(file_name)
+        except Exception as e:
+            raise Exception(e)
+        finally:
+            return self.output_Dict
+
+
+def main():
+    sample_Input = {'Input.txt': 'Randy', 'Code.py': 'Stan', 'Output.txt': 'Randy'}
+    groupbyowners = GroupByOwners()
+    final_Output = groupbyowners.group_By_Owners(sample_Input)
+    print "Output with Group By Owners\n" + str(final_Output)
+
+main()
