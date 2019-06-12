@@ -1,0 +1,9 @@
+<html>
+<body>
+<h1> Hello , Welcome home</h1>
+<form method="POST" action="/index2/"> {% csrf_token %}
+{{form.as_p}}
+<input type='submit' value='Enter' name='translatebtn' Class='btn'/>
+</form>
+</body>
+</html>
